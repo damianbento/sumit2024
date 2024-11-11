@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>System Information</title>
+</head>
+<body>
+    <h1>System Information</h1>
+    <p><strong>CPU Cores:</strong> <span id="cpu"></span></p>
+    <p><strong>Total Memory (MB):</strong> <span id="memory"></span></p>
+    <p><strong>Disk Size:</strong> <span id="disk"></span></p>
+    <p><strong>Serial Number:</strong> <span id="serial"></span></p>
+
+    <script>
+        fetch('/system_info.json')
+            .then(response => response.json())
+            .then(data => {
+                document.getElementById('cpu').textContent = data.cpu;
+                document.getElementById('memory').textContent = data.memory;
+                document.getElementById('disk').textContent = data.disk;
+                document.getElementById('serial').textContent = data.serial;
+            })
+            .catch(error => console.error('Error fetching system info:', error));
+    </script>
+</body>
+</html>
